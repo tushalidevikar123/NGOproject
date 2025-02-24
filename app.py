@@ -21,10 +21,9 @@ def register():
             "Email": request.form['email'],
             "Phone": request.form['phone']
         }
-        save_to_excel(user_data)
-        print(save_to_excel(user_data))
-        if save_to_excel(user_data)==None:
-            return render_template('registration.html',data="Saved Successfully!")
+        save_to_excel(user_data)  # Call only once
+
+        return render_template('registration.html', data="Saved Successfully!")
 
     return render_template('registration.html')
 
