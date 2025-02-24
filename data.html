@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registered Users</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            text-align: center;
+            padding: 20px;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            width: 80%;
+            margin: auto;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #007bff;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        .download-btn {
+            background: #28a745;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            border-radius: 5px;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 15px;
+        }
+        .download-btn:hover {
+            background: #218838;
+        }
+        a {
+            display: block;
+            margin-top: 15px;
+            text-decoration: none;
+            color: #007bff;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Registered Users</h2>
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+            </tr>
+            {% for user in data %}
+            <tr>
+                <td>{{ user['Name'] }}</td>
+                <td>{{ user['Email'] }}</td>
+                <td>{{ user['Phone'] }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        <a class="download-btn" href="/download">Download Excel File</a>
+        <a href="/">Back to Registration</a>
+    </div>
+</body>
+</html>
