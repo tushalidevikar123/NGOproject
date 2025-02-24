@@ -3,15 +3,18 @@ import pandas as pd
 import os
 
 app = Flask(__name__)
-FILE_PATH = "user_data.xlsx"
+FILE_PATH = "/tmp/user_data.xlsx"
+
 app.secret_key = "your_secret_key"
 def save_to_excel(data):
     if os.path.exists(FILE_PATH):
-        df = pd.read_excel(FILE_PATH)
+        df = pd.read_excel(FILE_PATH, engine='openpyxl')
         df = pd.concat([df, pd.DataFrame([data])], ignore_index=True)
     else:
         df = pd.DataFrame([data])
-    df.to_excel(FILE_PATH, index=False)
+
+    df.to_excel(FILE_PATH, index=False, engine='openpyxl')
+
 
 @app.route('/', methods=['GET', 'POST'])
 def register():
@@ -41,6 +44,7 @@ def download():
     if os.path.exists(FILE_PATH):
         return send_file(FILE_PATH, as_attachment=True)
     return "No data available to download", 404
+    
 ADMIN_EMAIL = "admin@gmail.com"
 ADMIN_PASSWORD = "admin123"
 @app.route('/login', methods=['GET', 'POST'])
